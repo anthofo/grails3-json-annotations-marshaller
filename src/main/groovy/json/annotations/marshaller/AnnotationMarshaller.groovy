@@ -1,11 +1,13 @@
-package grails.plugins.jsonapis
+package json.annotations.marshaller
 
+import grails.core.GrailsDomainClassProperty
 import groovy.util.logging.Log
 
-import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
-import org.codehaus.groovy.grails.commons.GrailsDomainClassProperty
-import org.codehaus.groovy.grails.web.converters.Converter
-import org.codehaus.groovy.grails.web.converters.marshaller.ObjectMarshaller
+
+import org.grails.core.DefaultGrailsDomainClass
+import org.grails.web.converters.Converter
+import org.grails.web.converters.exceptions.ConverterException
+import org.grails.web.converters.marshaller.ObjectMarshaller
 
 /**
  * This class implements the JSON serialization of domain objects
@@ -72,7 +74,7 @@ class AnnotationMarshaller<T extends Converter> implements ObjectMarshaller<T> {
 	 * @param converter The converter instance that is performing the serialization.
 	 */
 	void marshalObject(object, T converter) {
-		if (deleted) throw new org.codehaus.groovy.grails.web.converters.exceptions.ConverterException("Converter Configuration with name '${apiName}' was removed!")
+		if (deleted) throw new ConverterException("Converter Configuration with name '${apiName}' was removed!")
 		converter.build {
 			"${forClass.identifier.name}"(object.ident()) //always put the ID property into the object..
 			for (prop in propertiesToSerialize) {

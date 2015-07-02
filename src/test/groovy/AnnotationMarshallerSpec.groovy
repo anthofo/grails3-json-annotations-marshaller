@@ -1,15 +1,17 @@
 import grails.converters.JSON
+import grails.test.mixin.integration.Integration
+import grails.transaction.Rollback
 import grails.web.JSONBuilder
-import grails.plugin.spock.IntegrationSpec
+import spock.lang.Specification
 
-// @TestFor(User)
-class AnnotationMarshallerSpec extends IntegrationSpec {
+@Integration
+class AnnotationMarshallerSpec extends Specification  {
 	User roger
 
 	def setup() {
 		roger = new User(email: 'roger@roger.com', screenName: 'Roger', twitterUsername:'RogerRocks', neverGetsSerialized:'some_value')
-		roger.addToPets new ViciousPet(name:'spikey', numberOfLegs: 8, likesTickling: false, licenceNumber: 123)
-		roger.addToPets(name:'rover', numberOfLegs: 4, likesTickling: true)
+		roger.pets =[new ViciousPet(name:'spikey', numberOfLegs: 8, likesTickling: false, licenceNumber: 123)]
+		roger.pets.add(name:'rover', numberOfLegs: 4, likesTickling: true)
 	}
 
 	/**

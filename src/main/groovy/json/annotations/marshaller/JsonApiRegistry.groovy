@@ -1,11 +1,9 @@
-package grails.plugins.jsonapis
+package json.annotations.marshaller
 
+import grails.core.GrailsApplication
 import groovy.util.logging.Log
 
 import grails.converters.JSON
-import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
-import org.codehaus.groovy.grails.commons.GrailsDomainClassProperty
-import org.codehaus.groovy.grails.commons.GrailsApplication
 
 /**
  * Keeps track of all the JSON APIs registered by the plugin. Constains methods

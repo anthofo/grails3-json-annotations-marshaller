@@ -1,6 +1,8 @@
-import grails.plugins.jsonapis.JsonApiRegistry
+package grails.plugins.jsonannotations
 
-class JsonApisGrailsPlugin {
+import json.annotations.marshaller.JsonApiRegistry
+
+class JsonAnnotationsMarshallerGrailsPlugin {
     def version = "0.95"
     def grailsVersion = "2.0 > *"
     def pluginExcludes = [
@@ -38,6 +40,6 @@ graph.
     }
     def doWithApplicationContext = { applicationContext ->
         //Generate and register the required ObjectMarshaller instances.
-        jsonApiRegistry.updateMarshallers(application)
+        jsonApiRegistry.updateMarshallers(grailsApplication)
     }
 }

@@ -1,8 +1,9 @@
+import grails.core.DefaultGrailsApplication
+import grails.core.GrailsApplication
+import json.annotations.marshaller.AnnotationMarshaller
+import json.annotations.marshaller.JsonApiRegistry
+import org.grails.core.DefaultGrailsDomainClass
 import spock.lang.*
-import grails.plugins.jsonapis.*
-
-import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
-import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class JsonApiRegistrySpec extends Specification {
 	DefaultGrailsDomainClass domainClass
@@ -11,7 +12,7 @@ class JsonApiRegistrySpec extends Specification {
 	
 	def setup() {
 		domainClass = new DefaultGrailsDomainClass(Pet)
-		grailsApplication = new org.codehaus.groovy.grails.commons.DefaultGrailsApplication()
+		grailsApplication = new DefaultGrailsApplication()
 		grailsApplication.metaClass.domainClasses = [domainClass]
 		registry = new JsonApiRegistry()
 	}
@@ -50,7 +51,7 @@ class JsonApiRegistrySpec extends Specification {
 	
 	def "during live reloads .updateMarshallers should rescan which properties to serialize"() {
 		given: 'an API registry with a mocked marshaller'
-		AnnotationMarshaller<Pet> marshaller = Mock(constructorArgs:[domainClass, 'petDetails'])
+		AnnotationMarshaller marshaller = Mock(constructorArgs:[domainClass, 'petDetails'])
 		registry.marshallersByApi['petDetails'] << marshaller
 		
 		when:
