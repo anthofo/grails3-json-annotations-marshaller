@@ -1,4 +1,4 @@
-package json.annotations.marshaller
+package org.grails.json.annotations
 
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

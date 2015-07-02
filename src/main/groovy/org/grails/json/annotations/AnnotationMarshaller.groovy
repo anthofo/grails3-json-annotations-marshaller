@@ -1,4 +1,4 @@
-package json.annotations.marshaller
+package org.grails.json.annotations
 
 import grails.core.GrailsDomainClassProperty
 import groovy.util.logging.Log

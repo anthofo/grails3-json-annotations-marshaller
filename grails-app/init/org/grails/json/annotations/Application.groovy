@@ -1,4 +1,4 @@
-package json.annotations.marshaller
+package org.grails.json.annotations
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

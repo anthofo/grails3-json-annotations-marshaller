@@ -16,7 +16,7 @@ plugins {
     id "com.jfrog.bintray" version "1.1"
 }
 
-version "0.1-SNAPSHOT"
+version "1.0-SNAPSHOT"
 group "org.grails.plugins"
 
 apply plugin: 'maven-publish'
@@ -61,7 +61,6 @@ dependencies {
     provided "org.grails:grails-dependencies"
     provided 'javax.servlet:javax.servlet-api:3.1.0'
 
-    testCompile "org.grails.plugins:hibernate"
     testCompile "org.grails:grails-plugin-testing"
 
     console "org.grails:grails-console"
@@ -69,4 +68,16 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId 'json-annotations-marshaller'
+        }
+    }
+}
+
+jar {
+    exclude "org/grails/json/annotations/domain/**"
 }

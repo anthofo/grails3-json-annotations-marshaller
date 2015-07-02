@@ -1,4 +1,4 @@
-package json.annotations.marshaller
+package org.grails.json.annotations
 
 import grails.core.GrailsApplication
 import groovy.util.logging.Log
@@ -23,7 +23,14 @@ class JsonApiRegistry {
 	 */
 	void updateMarshallers(GrailsApplication application) {
 		def allApiNames = getAllApiNames(application.domainClasses)
-		
+
+        // Register a JSON serializer "common" that will only serialize the properties flagged with '@JsonApi' annotation with no name parameter
+        JSON.createNamedConfig('common') { JSON ->
+            for (domainClass in application.domainClasses) {
+                JSON.registerObjectMarshaller(new AnnotationMarshaller<JSON>(domainClass, 'common'))
+            }
+        }
+
 		def newApis = allApiNames - marshallersByApi.keySet()
 		newApis.each { namespace ->
 			JSON.createNamedConfig(namespace) { JSON ->
@@ -31,6 +38,7 @@ class JsonApiRegistry {
 					def marshaller = new AnnotationMarshaller<JSON>(domainClass, namespace)
 					JSON.registerObjectMarshaller(marshaller)
 					marshallersByApi[namespace] << marshaller
+                    JSON.registerObjectMarshaller(Enum, { Enum e -> e.name() })
 				}
 			}
 		}

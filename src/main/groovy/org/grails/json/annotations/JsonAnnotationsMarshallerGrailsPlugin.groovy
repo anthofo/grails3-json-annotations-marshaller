@@ -1,4 +1,4 @@
-package json.annotations.marshaller
+package org.grails.json.annotations
 
 import grails.plugins.*
 
@@ -12,9 +12,11 @@ class JsonAnnotationsMarshallerGrailsPlugin extends Plugin {
     def pluginExcludes = [
             "grails-app/views/**",
             "grails-app/domain/**",
+            "**/org/grails/json/annotations/domain/**",
             "grails-app/controllers/**",
             "grails-app/i18n/**",
             "web-app/**",
+            "src/test/**",
             "demo-output.html"
     ]
 

@@ -1,7 +1,10 @@
+package org.grails.json.annotations
+
 import grails.converters.JSON
 import grails.test.mixin.integration.Integration
-import grails.transaction.Rollback
 import grails.web.JSONBuilder
+import org.grails.json.annotations.domain.User
+import org.grails.json.annotations.domain.ViciousPet
 import spock.lang.Specification
 
 @Integration

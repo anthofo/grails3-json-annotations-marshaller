@@ -1,8 +1,10 @@
+package org.grails.json.annotations
+
 import grails.core.DefaultGrailsApplication
 import grails.core.GrailsApplication
-import json.annotations.marshaller.AnnotationMarshaller
-import json.annotations.marshaller.JsonApiRegistry
 import org.grails.core.DefaultGrailsDomainClass
+import org.grails.json.annotations.domain.Pet
+import org.grails.json.annotations.domain.User
 import spock.lang.*
 
 class JsonApiRegistrySpec extends Specification {

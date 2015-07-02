@@ -1,4 +1,6 @@
-import json.annotations.marshaller.JsonApi
+package org.grails.json.annotations.domain
+
+import org.grails.json.annotations.JsonApi
 
 class ViciousPet extends Pet {
 	
