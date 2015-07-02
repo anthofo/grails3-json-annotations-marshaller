@@ -65,7 +65,7 @@ graph. Adapted from the Gregor Petrin grails 2 json-apis plugin
 
     void doWithApplicationContext() {
         //Generate and register the required ObjectMarshaller instances.
-        jsonApiRegistry.updateMarshallers(applicationContext)
+        jsonApiRegistry.updateMarshallers(grailsApplication)
     }
 
     void onChange(Map<String, Object> event) {
